@@ -1,7 +1,9 @@
 package com.quiikmart.notificationservice.integration.email;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SendGridService implements EmailService {
 
     private final String apiKey;
