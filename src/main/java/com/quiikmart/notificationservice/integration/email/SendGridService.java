@@ -10,11 +10,11 @@ public class SendGridService implements EmailService {
 
     public SendGridService(@Value("${sendgrid.api.key}") String apiKey) {
         this.apiKey = apiKey;
-        // Initialize SendGrid with apiKey
+        // TODO: Initialize SendGrid with apiKey
     }
 
     @Override
     public void sendEmail(String to, String subject, String body) {
-        // SendGrid API integration code here
+        // TODO: SendGrid API integration code here
     }
 }
