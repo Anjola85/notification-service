@@ -22,16 +22,15 @@ public class NotificationConsumerServiceImpl implements NotificationConsumerServ
     @KafkaListener(topics = "${spring.kafka.template.default-topic}", groupId = "${spring.kafka.consumer.group-id}")
     public void processMessage(String message) {
         this.logger.debug("Received message: " + message);
-
-        try {
-            Notification notification = objectMapper.readValue(message, Notification.class);
-            logger.debug("Mapped notification message: {}", notification);
-
-            var handler = notificationHandlerFactory.getHandler(notification);
-            handler.handleNotification(notification);
-
-        } catch(Exception e) {
-            logger.error("Failed to parse message: {}", message, e);
-        }
+//        try {
+//            Notification notification = objectMapper.readValue(message, Notification.class);
+//            logger.debug("Mapped notification message: {}", notification);
+//
+//            var handler = notificationHandlerFactory.getHandler(notification);
+//            handler.handleNotification(notification);
+//
+//        } catch(Exception e) {
+//            logger.error("Failed to parse message: {}", message, e);
+//        }
     }
 }
