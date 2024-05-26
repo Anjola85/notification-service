@@ -1,16 +1,13 @@
 package com.quiikmart.notificationservice.integration.sms;
-import com.quiikmart.notificationservice.dto.MobileNumber;
+
 import com.twilio.Twilio;
 import com.twilio.exception.ApiException;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
-import org.apache.http.HttpException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpServerErrorException;
 
 import static com.quiikmart.notificationservice.common.util.validator.mobile.isMobileNumberValid;
 
@@ -39,7 +36,6 @@ public class TwilioSmsService implements SmsService{
                 PhoneNumber from = new PhoneNumber(fromNumber);
                 Message twilioMessage = Message.creator(to, from, message).create();
                 logger.info("Sent SMS to {}: {}", phoneNumber, twilioMessage.getSid());
-                // TODO: return the value
             } else {
                 logger.error("Invalid phone number provided: {}", phoneNumber);
                 throw new IllegalArgumentException("Invalid phone number: " + phoneNumber);

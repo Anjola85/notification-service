@@ -1,6 +1,6 @@
 package com.quiikmart.notificationservice.notification.handler;
 
-import com.quiikmart.notificationservice.notification.Notification;
+import com.quiikmart.notificationservice.dto.NotificationRequestDto;
 import com.quiikmart.notificationservice.notification.NotificationType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -12,12 +12,14 @@ public class NotificationHandlerFactory {
     @Autowired
     private ApplicationContext applicationContext;
 
-    public NotificationHandler getHandler(Notification notification) {
-        switch (NotificationType.valueOf(notification.getType().toUpperCase())) {
+    public NotificationHandler getHandler(NotificationRequestDto notificationRequest) {
+        switch (NotificationType.valueOf(notificationRequest.getType().toUpperCase())) {
+            case PROMOTIONAL:
+                return null;
             case OTP:
                 return applicationContext.getBean(OtpNotificationHandler.class);
             default:
-                throw new UnsupportedOperationException("Unsupported notification type: " + notification.getType());
+                throw new UnsupportedOperationException("Unsupported notification type: " + notificationRequest.getType());
         }
     }
 }

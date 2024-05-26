@@ -38,6 +38,8 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.kafka:spring-kafka-test'
     testImplementation 'org.springframework.security:spring-security-test'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.15.1'
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
 }
 
 tasks.named('test') {
