@@ -10,7 +10,7 @@ import java.time.Instant;
 @Service
 public class OtpServiceImpl implements OtpService {
     private static final int OTP_LENGTH = 6;
-    private static final long OTP_VALID_DURATION = 0;
+    private static final long OTP_VALID_DURATION = 5 * 60 * 1000; // 5 minutes in milliseconds
 
     private final SecureRandom random = new SecureRandom();
 
@@ -19,23 +19,12 @@ public class OtpServiceImpl implements OtpService {
 
     /**
      * @param userId
-     * @return
+     * @return otp
      */
     @Override
-    public int generateOtp(String userId) {
-        int otp = random.nextInt(9000) + 1000;
-        long expiryTime = Instant.now().toEpochMilli() + OTP_VALID_DURATION;
-        authService.saveOtp(userId, otp, expiryTime);
-        return otp;
-    }
-
-    /**
-     * @param userId
-     * @param otpCode
-     * @return
-     */
-    @Override
-    public boolean validateOtp(String userId, int otpCode) {
-        return authService.validateOtp(userId, otpCode);
+    public Otp generateOtp() {
+        int code = random.nextInt(9000) + 1000;
+        long expiryTime = Instant.now().toEpochMilli() + OTP_VALID_DURATION; // time in milliseconds
+        return new Otp(code, expiryTime);
     }
 }

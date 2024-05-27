@@ -28,9 +28,9 @@ public class SendGridService implements EmailService {
 
     @Override
     public void sendEmail(String to, String subject, String body) throws Exception {
+        // TODO: validate that its a valid email
         Email from = new Email(senderEmail);
         Email recipient = new Email(to);
-        //TODO: this should be generated depending on the type of email
         Content content = new Content("text/plain", body);
         Mail mail = new Mail(from, subject, recipient, content);
 

@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * DTO for {@link com.quiikmart.notificationservice.notification.Notification}
@@ -20,6 +19,7 @@ public class NotificationRequestDto implements Serializable {
     private String recipient;
     private String content;
     private String type;
+    private String userId;
 
     public String getChannel() {
         return channel;
@@ -61,16 +61,11 @@ public class NotificationRequestDto implements Serializable {
         this.type = type;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        NotificationRequestDto that = (NotificationRequestDto) o;
-        return channel.equals(that.channel) && priority.equals(that.priority) && recipient.equals(that.recipient) && content.equals(that.content) && type.equals(that.type);
+    public String getUserId() {
+        return userId;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(channel, priority, recipient, content, type);
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

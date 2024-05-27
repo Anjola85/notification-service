@@ -1,6 +1,7 @@
 package com.quiikmart.notificationservice.auth;
 
+import com.quiikmart.notificationservice.otp.Otp;
+
 public interface AuthService {
-    void saveOtp(String userId, int otpCode, long expiryTime);
-    boolean validateOtp(String userId, int otpCode);
+    void saveOtp(String userId, Otp otp);
 }
